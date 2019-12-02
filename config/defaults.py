@@ -1,4 +1,4 @@
-from yacs.config import CfgNode as CN
+from easydict import EasyDict as edict
 
 # -----------------------------------------------------------------------------
 # Convention about Training / Test specific parameters
@@ -14,16 +14,16 @@ from yacs.config import CfgNode as CN
 # Config definition
 # -----------------------------------------------------------------------------
 
-_C = CN()
+_C = edict()
 
-_C.MODEL = CN()
+_C.MODEL = edict()
 _C.MODEL.DEVICE = "cuda"
 _C.MODEL.NUM_CLASSES = 10
 
 # -----------------------------------------------------------------------------
 # INPUT
 # -----------------------------------------------------------------------------
-_C.INPUT = CN()
+_C.INPUT = edict()
 # Size of the image during training
 _C.INPUT.SIZE_TRAIN = 32
 # Size of the image during test
@@ -42,7 +42,7 @@ _C.INPUT.PIXEL_STD = [0.3081, ]
 # -----------------------------------------------------------------------------
 # Dataset
 # -----------------------------------------------------------------------------
-_C.DATASETS = CN()
+_C.DATASETS = edict()
 # List of the dataset names for training, as present in paths_catalog.py
 _C.DATASETS.TRAIN = ()
 # List of the dataset names for testing, as present in paths_catalog.py
@@ -51,14 +51,14 @@ _C.DATASETS.TEST = ()
 # -----------------------------------------------------------------------------
 # DataLoader
 # -----------------------------------------------------------------------------
-_C.DATALOADER = CN()
+_C.DATALOADER = edict()
 # Number of data loading threads
 _C.DATALOADER.NUM_WORKERS = 8
 
 # ---------------------------------------------------------------------------- #
 # Solver
 # ---------------------------------------------------------------------------- #
-_C.SOLVER = CN()
+_C.SOLVER = edict()
 _C.SOLVER.OPTIMIZER_NAME = "SGD"
 
 _C.SOLVER.MAX_EPOCHS = 50
@@ -88,7 +88,7 @@ _C.SOLVER.IMS_PER_BATCH = 16
 
 # This is global, so if we have 8 GPUs and IMS_PER_BATCH = 16, each GPU will
 # see 2 images per batch
-_C.TEST = CN()
+_C.TEST = edict()
 _C.TEST.IMS_PER_BATCH = 8
 _C.TEST.WEIGHT = ""
 
